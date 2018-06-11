@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  <!-- Todo lo que va en head no es visible dentro de nuestra pagina web pero es informacion que nos puede servir para la pagina, como metadatos(tipo de letra que se esta usando, idioma, etc... estos datos pueden servir para varios motivos, como por ejemplo cuando hacemos una busqueda en google en donde seleccionamos "solo español" si tenemos como metadato que nuestra pagina estara en español, en teoria deberia estar en nuestra busqueda. Tambien en el head van links a documentos externos en donde podrìamos tener funciones predefinidas, scripts o estilos(que es lo que muestro mas abajo)   )  -->
+  <meta charset="UTF-8">
+  
+
+  <title>Titulo</title> <!-- Aca va el titulo de la pagina, esto se ve arriba del navegador  -->
+
+
+      <link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>   <!-- Aca añado mis documentos que contienen los estilos, que utilizare en nuestra pagina, <link> nos indica que utilizaremos el documento indicado en href="documento", en este caso es el framework bootstrap del que les hable y el que les recomiendo usar. Bootstrap tiene estilos css y funciones javascript que debemos importar (referirnos a ella con link), en este caso estamos añadiendo la parte de estilos(css) y en la siguiente linea añadiremos la parte javascript (es un lenguaje de programacion orientado a desarrollo web, nos ayuda a crear páginas dinámicas, cualquier duda me dicen)  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Importe ajax, no se preocupen por esto pero les puede ser utíl para quien quiera aprender más -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><!-- Parte Js de bootstrap -->
+</head>
+<div align="center">
+<body>
+
+
+
+<nav class="navbar navbar-default"> <!-- Todo lo que estè dentro de nav sera la barra de navegacion -->
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Cafe </a> <!-- las etiquetas a nos indica que el texto dentro de la etiqueta será un link a otra página (docimento), el elemento será clickeable y al hacerlo redirigirá a la página indicada dentro de las comillas en el atributo href, en este caso al hacer click en café, nos redirige a "index.html" que en este caso es la misma pagina, pero podría llamar a otra pagina ej: href="pagina2.html", en este caso no la he creado así que les dirá que la página no se encuentra, para crearla deben crearla en el mismo directorio donde está su página, si la añaden en una carpeta deben incluir el nombre de la carpeta (href="carpeta/pagina2.html") -->
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav"> <!-- esto es una lista desordenada -->
+        <li class="active"><a href="Venta.html">Nueva venta <span class="sr-only">(current)</span></a></li> <!-- elementos de la lista, fijarse que se pueden añadir etiquetas dentro de etiquetas -->
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registrar <span class="caret"></span></a>
+          <ul class="dropdown-menu"> <!-- es una lista tipo drop dawn, la clase="dropdown-menu" es un estilo que tiene bootstrap el cual añadimos en el head -->
+            <li><a href="Cliente.html">Cliente</a></li>
+            <li><a href="Deudores.html">Deudores</a></li>
+            <li><a href="Terceros.html">Terceros</a></li>
+            <li role="separator" class="divider"></li> <!-- separa visualmente la lista  -->
+            <li><a href="Ingredientes.html">Ingrediente</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="Mesa.html">Mesa</a></li>
+            <li><a href="Mesero.html">Mesero</a></li>
+            <li><a href="Pedido.html">Pedido</a></li>
+          
+          </ul>
+
+        </li>
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consultar <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="Comprar.html">Ventas totales por fecha</a></li>                    
+           
+            <li><a href="consultas/ventasporplato.php">Ventas por plato</a></li>
+            
+            <li><a href="Clientequemasconsume.html">Cliente que más consume</a></li>
+            <li><a href="Meseromasefectivo.html">Mesero más efectivo</a></li>
+            
+            <li><a href="consultas/productomassolicitado.php">Producto más solicitado</a></li>
+            <li><a href="consultas/fechaveningr.php">Fecha vencimiento ingrediente</a></li>
+            <li><a href="consultas/fechavenprod.php">Fecha vencimiento producto</a></li>
+            <li><a href="consultas/mediopago.php">Medio de pago más usado</a></li>
+          
+          </ul>
+          
+        </li>
+      </ul>
+    
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav> 
+
+<!-- aquí empieza lo que está debajo del menú superior-->
+<form action="respuesta.php" method="post"><!-- aquí se invoca al codigo de venta.php que está en la carpeta "php" y se le realiza un post una vez que se presiona enviar -->
+Venta <br><input type="text" name="venta"><br><!-- Estos son cada uno de los casilleros -->
+Sub_total <br><input type="text" name="subtotal"><br>
+Propina  <br><input type="text" name="propina"><br>
+
+<input type="radio" name="gender" value="male" checked> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+  <input type="radio" name="gender" value="other"> Other
+<input type="submit"> <!-- botón enviar -->
+  
+</body>
+</div>
+
+</html>
