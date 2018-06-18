@@ -13,6 +13,8 @@ $Rut_cliente=$_POST["Rut_cliente"];
 $Rut_chofer=$_POST["Rut_chofer"];
 $Origen=$_POST["Origen"];
 $Destino=$_POST["Destino"];
+$Estado="viaje";
+
 
 
 // Create connection
@@ -28,14 +30,38 @@ if ($conn->connect_error) {
 //$consulta=query($db,"select * from ventas"); manera alternativa
 $sql="INSERT INTO viajes (Fecha_inicio_viaje, Hora_Fin_viaje, Fecha_fin_viaje, Hora_inicio_viaje, Rut_cliente, Origen,Destino) VALUES ('$Fecha_inicio_viaje','$Hora_fin_viaje','$Fecha_fin_viaje','$Hora_inicio_viaje','$Rut_cliente','$Origen','$Destino')";
 
+if ($conn->query($sql) === TRUE) {
+	$ID = mysqli_insert_id($conn);
+    echo "New record created successfully";
+    echo "No. ID".$ID;
+} 
+
+else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+
+$sql="INSERT INTO necesita (ID, Patente) VALUES ('$ID','$Patente')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Los datos  ya estan registrados en la base de datos: " . $conn->error;
+}
 $sql="INSERT INTO manejados (Patente, Rut_chofer) VALUES ('$Patente','$Rut_chofer')";
-
-
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Los datos  ya estan registrados en la base de datos: ";
+}
+
+$sql="UPDATE buses SET Estado= '$Estado' Where patente='$Patente'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
 }
 
 ?>

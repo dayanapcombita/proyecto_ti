@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 
 
 //$consulta=query($db,"select * from ventas"); manera alternativa
-$sql="INSERT INTO clientes (Rut_cliente,Direccion,Correo1,Correo2,Telefono1,Telefono2) VALUES ('$Rut_cliente','$Direccion','$Correo','$Correo2','Telefono1','$Telefono2')";
+$sql="INSERT INTO clientes (Rut_cliente,Direccion,Correo1,Correo2,Telefono1,Telefono2) VALUES ('$Rut_cliente','$Direccion','$Correo','$Correo2','$Telefono1','$Telefono2')";
 		
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

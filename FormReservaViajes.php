@@ -1,3 +1,16 @@
+<?php
+  $conn = mysqli_connect("localhost", "root", "", "proyecto_ti");
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+ $sql="Select * FROM buses where Estado='disponible'";
+ $res=$conn->query($sql);
+ 
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +24,7 @@
 	
 
 				<body>
-
+<div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,30 +83,62 @@
   </div>
 </nav>
 
-			<form action='carpeta/Repuestos.php' method='post'>
-   <legend>Repuesto:</legend>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Nombre</label>
-    <input type="text" class="form-control"name="Nombre" aria-describedby="emailHelp" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Marca</label>
-    <input type="text" class="form-control" name="Marca" placeholder="">
 
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Stock</label>
-    <input type="text" class="form-control" name="Stock" placeholder="">
 
+			<form action='carpeta/Viajes.php' method='post'>
+   <legend>Nuevo Viaje :</legend>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Rut Cliente</label>
+    <input type="text" class="form-control" name="Rut_cliente"  aria-describedby="emailHelp" placeholder="">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Punto_reorden </label>
-    <input type="text" class="form-control" name="Punto_reorden" placeholder="">
-  </div>
+    <label for="exampleInputPassword1">Patente Bus </label>
+        <select name="Patente" id="buses" class="form-control" required > 
+       <?php
+       while($row=mysqli_fetch_array($res)) {
+               echo "<option value='" . $row["Patente"] . "'>" . $row["Patente"] . "</option>";
+             
+             }
+           ?>  
+    </select>
  
-  <button type="submit" class="btn btn-primary">Registrar</button>
+
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Rut Chofer</label>
+    <input type="text" class="form-control" name="Rut_chofer" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Fecha Inicio Viaje  </label>
+    <input type="text" class="form-control" name="Fecha_inicio_viaje" placeholder="Ano-Mes-Dia">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Hora Inicio </label>
+    <input type="text" class="form-control" name="Hora_inicio_viaje" placeholder="hora:min:seg">
+  </div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Fecha Termino Viaje </label>
+    <input type="text" class="form-control" name="Fecha_fin_viaje" placeholder="Ano-Mes-Dia">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Hora termino</label>
+    <input type="text" class="form-control" name="Hora_fin_viaje" placeholder="hora:min:seg">
+  </div>
+ <div class="form-group">
+    <label for="exampleInputPassword1">Origen </label>
+    <input type="text" class="form-control" name="Origen" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Destino</label>
+    <input type="text" class="form-control" name="Destino" placeholder="">
+  </div>
+  <div class="form-group">
+    
+ 		 
+  </div>
+  <button type="submit"  class="btn btn-primary">Registrar</button>
 </form>
-	
+	</div>
 
 				</body>
 
